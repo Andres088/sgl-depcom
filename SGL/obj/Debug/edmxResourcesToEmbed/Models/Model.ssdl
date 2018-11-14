@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="detalleOC">
+    <Key>
+      <PropertyRef Name="codFactura" />
+    </Key>
+    <Property Name="codFactura" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="codOC" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="edicion">
+    <Key>
+      <PropertyRef Name="numero" />
+    </Key>
+    <Property Name="numero" Type="int" Nullable="false" />
+    <Property Name="codUsuario" Type="varchar" MaxLength="50" />
+    <Property Name="codDoc" Type="varchar" MaxLength="50" />
+    <Property Name="tipoDoc" Type="varchar" MaxLength="50" />
+    <Property Name="modificacion" Type="varchar" MaxLength="50" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="hora" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="factura">
+    <Key>
+      <PropertyRef Name="codFactura" />
+    </Key>
+    <Property Name="codFactura" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="unidad" Type="varchar" MaxLength="50" />
+    <Property Name="planta" Type="varchar" MaxLength="50" />
+    <Property Name="scop" Type="varchar" MaxLength="50" />
+    <Property Name="galones" Type="int" />
+    <Property Name="octanaje" Type="varchar" MaxLength="50" />
+    <Property Name="monto" Type="float" />
+  </EntityType>
+  <EntityType Name="OC">
+    <Key>
+      <PropertyRef Name="codOC" />
+    </Key>
+    <Property Name="codOC" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="programa" Type="varchar" MaxLength="50" />
+    <Property Name="unidad" Type="varchar" MaxLength="50" />
+    <Property Name="planta" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OP">
+    <Key>
+      <PropertyRef Name="codOP" />
+    </Key>
+    <Property Name="codOP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="unidad" Type="varchar" MaxLength="50" />
+    <Property Name="planta" Type="varchar" MaxLength="50" />
+    <Property Name="scop" Type="varchar" MaxLength="50" />
+    <Property Name="estacion" Type="varchar" MaxLength="50" />
+    <Property Name="galones" Type="int" />
+    <Property Name="octanaje" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="codUsuario" />
+    </Key>
+    <Property Name="codUsuario" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="15" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="tipoUsuario" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="detalleOC" EntityType="Self.detalleOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="edicion" EntityType="Self.edicion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="factura" EntityType="Self.factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OC" EntityType="Self.OC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OP" EntityType="Self.OP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
