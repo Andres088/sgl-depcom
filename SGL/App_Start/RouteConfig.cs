@@ -13,10 +13,16 @@ namespace SGL
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "SGL.Controllers.HomeController",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+            //);
             routes.MapRoute(
-                name: "SGL.Controllers.HomeController",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Login", id = UrlParameter.Optional },
+                new[] { "SGL.Controllers.HomeController" }
             );
         }
     }
