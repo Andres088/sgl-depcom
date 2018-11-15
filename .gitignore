@@ -138,8 +138,6 @@ _[Ss]cripts
 
 .vs
 
-packages
-
 *.exe
 
 *.dll
