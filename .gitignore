@@ -136,6 +136,10 @@ NuGet.exe
 
 _[Ss]cripts
 
+.vs
+
+packages
+
 *.exe
 
 *.dll
