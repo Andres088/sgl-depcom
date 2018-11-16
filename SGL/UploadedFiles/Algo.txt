@@ -1,0 +1,1 @@
+Archivo solo creado para que Azure cree este folder en el momento de la publicación.
