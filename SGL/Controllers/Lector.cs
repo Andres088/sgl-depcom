@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections;
-
+using ExcelDataReader;
+using System.Data;
 
 namespace SGL.Controllers
 {
@@ -107,33 +107,39 @@ namespace SGL.Controllers
 
         public List<OP> excel()
         {
-            Excel.Application excel = new Excel.Application();
-            Excel.Workbook workbook = excel.Workbooks.Open(archivo);
-            Excel._Worksheet sheet = workbook.Sheets[1];
+            DataSet dataSet;
+            DataTable table;
 
-
-            int row = 12;
-            var current_cell = sheet.Cells[row, 9].Value;
-
-            while (current_cell != null)
+            using (var stream = File.Open(archivo, FileMode.Open, FileAccess.Read))
             {
-                OP op = new OP();
-                op.codOP = sheet.Cells[row, 10].Value;
-                op.fecha = sheet.Cells[row, 12].Value;
-                op.unidad = sheet.Cells[row, 3].Value;
-                op.planta = sheet.Cells[row, 8].Value;
-                op.scop = sheet.Cells[row, 9].Value.ToString();
-                op.estacion = sheet.Cells[row, 5].Value;
-                op.galones = (int)sheet.Cells[row, 7].Value;
-                op.octanaje = sheet.Cells[row, 6].Value;
-                paquete_OP.Add(op);
-                row++;
-                if (row == 20) { break; }
-                current_cell = sheet.Cells[row, 9].Value;
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    dataSet = reader.AsDataSet();
+                    table = dataSet.Tables[0];
+                }
             }
 
-            workbook.Close();
-            excel.Quit();
+            int row = 11;
+            var current_cell = table.Rows[row][9];
+            int total_rows = table.Rows.Count;
+
+            while (row < total_rows - 1)
+            {
+                OP op = new OP();
+                op.codOP = (string)table.Rows[row][9];
+                op.fecha = (DateTime)table.Rows[row][11];
+                op.unidad = (string)table.Rows[row][2];
+                op.planta = (string)table.Rows[row][7];
+                op.scop = ((double)table.Rows[row][8]).ToString();
+                op.estacion = (string)table.Rows[row][4];
+                op.galones = (int)((double)table.Rows[row][6]);
+                op.octanaje = (string)table.Rows[row][5];
+                paquete_OP.Add(op);
+                Console.WriteLine(current_cell);
+                row++;
+                if (row == 50) { break; }
+                current_cell = table.Rows[row][8];
+            }
 
             eliminar_archivos_servidor();
 

@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel;
 
 
 namespace SGL.Controllers
