@@ -58,7 +58,7 @@ namespace SGL.Controllers
 
                 factura.planta = Uti.mod_planta(planta);
                 factura.unidad = Uti.mod_destino(direccion, planta, destino);
-                factura.fecha = DateTime.Parse(Uti.mod_fecha(fecha));
+                factura.fecha = Uti.mod_fecha(fecha);
                 factura.codFactura = codfactura.Substring(15, 13);
                 factura.octanaje = Uti.mod_octanaje(octanaje);
                 factura.monto = Double.Parse(Uti.mod_monto(monto));

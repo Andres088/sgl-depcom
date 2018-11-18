@@ -8,6 +8,7 @@ using System.IO;
 using System.Xml;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Globalization;
 
 namespace SGL.Controllers
 {
@@ -152,18 +153,11 @@ namespace SGL.Controllers
             else return "PROVINCIA";
         }
 
-        public static string mod_fecha(string fecha)
+        public static DateTime mod_fecha(string fecha)
         {
-            string nueva_fecha = fecha;
-            int size = fecha.Length;
-            int i = 0;
-            char p = '.';
-            foreach (char f in fecha)
-            {
-                if (f.Equals(p)) nueva_fecha = nueva_fecha.Substring(0, i) + "/" + nueva_fecha.Substring(i + 1, size - i - 1);
-                i++;
-            }
-            return nueva_fecha;
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("es-ES");
+            DateTime fecha_mod = DateTime.Parse(fecha, culture);
+            return fecha_mod;
         }
 
         public static string mod_monto(string monto)
