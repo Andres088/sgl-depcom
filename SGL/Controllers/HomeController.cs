@@ -408,10 +408,36 @@ namespace SGL.Controllers
                 List<factura> lista_facturas = lector.paquete_facturas();
                 ViewBag.lista_facturas = lista_facturas;
 
+                
+
+                //Valida si las facturas tienen OP registrado
+                List<OP> listado_OP = new List<OP>();
+                List<string> listado_scops = new List<string>();
+                using (Entities obj = new Entities())
+                {
+                    listado_OP = obj.OP.ToList();
+                }
+                foreach(OP opi in listado_OP)
+                {
+                    listado_scops.Add(opi.scop);
+                }
+                string mensaje = "";
+                foreach(factura factu in lista_facturas)
+                {
+                    if (!listado_scops.Contains(factu.scop))
+                    {
+                        mensaje += " ("+factu.codFactura+","+factu.scop+") ";
+                    } 
+                }
+                if (mensaje.Length > 1)
+                {
+                    ViewBag.message = "Las siguientes facturas no tienen OP registrado: " + mensaje;
+                    return View();
+                }
+
                 //Sube las facturas a la BD
                 lector.subir_facturas();
                 ViewBag.message = "Facturas subidas exitosamente.";
-
 
                 // Guarda edicion de cambios en BD y retorna vista
                 using (Entities obj = new Entities())

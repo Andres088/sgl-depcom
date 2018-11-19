@@ -213,6 +213,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\logo.PNG" />
     <Content Include="images\user-icon.png" />
     <Content Include="js\demo\chart-area-demo.js" />
     <Content Include="js\demo\chart-bar-demo.js" />
