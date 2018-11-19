@@ -16,6 +16,7 @@
                             <th>Programa</th>
                             <th>Unidad</th>
                             <th>Planta</th>
+                            <th>Opción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,7 +28,8 @@
                                     <td>@oc.fecha.ToString().Substring(0,11)</td>
                                     <td>@oc.programa</td>
                                     <td>@oc.unidad</td>
-                                    <td>@oc.planta SP 97</td>
+                                    <td>@oc.planta</td>
+                                    <td>@Html.ActionLink("Eliminar", "Eliminar_OC", "Home", oc, new { @class = " " })</td>
                                 </tr>
                             }
                         }
