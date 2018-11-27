@@ -1,0 +1,4 @@
+No agregar detalle al crear OC
+Numeracion de OC no actualiza al generar OC o eliminar OC
+Se desconoce estado de tabla detalleOC
+Algunas de las facturas ya han sido subidas al servidor. (OP?)
